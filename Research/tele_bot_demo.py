@@ -21,5 +21,13 @@ async def command_start_handler(message: types.Message):
     
     await message.reply(f"Hello! \nI am Echobot \npowered by Abhishek")
 
+@dp.message_handler()
+async def echo_message(message: types.Message):
+    """
+    This handler receives messages with `/start` command
+    """
+    
+    await message.reply(message.text)
+
 if __name__ == "__main__":
     executor.start_polling(dp,skip_updates=True)

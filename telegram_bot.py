@@ -12,7 +12,7 @@ class Reference:
         self.response=""
 
 load_dotenv()
-openai.api_key=os.getenv("OpenAI_API_KEY")
+#openai.api_key=os.getenv("OpenAI_API_KEY")
 Token=os.getenv("TOKEN")
 reference=Reference()
 
@@ -36,6 +36,14 @@ async def welcome(message:types.Message):
     '''
     await message.reply("Hi \nI am Telegram Bot \Created by Abhishek Nishad \nHow May I help you")
 
+@dispatcher.message_handler(commands=['clear'])
+async def clear_history(message:types.Message):
+    '''
+    this will clear the history
+    '''
+    clear_past_text()
+    await message.reply("I have cleared all previous conversation")
+
 @dispatcher.message_handler(commands=['help','menu'])
 async def menu_option(message:types.Message):
     '''
@@ -52,5 +60,5 @@ async def menu_option(message:types.Message):
 
 
 if __name__ == "__main__":
-    executor.start_polling(dispatcher, skip_updates=False)
+    executor.start_polling(dispatcher, skip_updates=True)
 
